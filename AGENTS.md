@@ -1,4 +1,42 @@
-# Notes for agents
+# Notes for agents (fork)
+
+This repository is a fork of an OpenCE for my personal contribution to the open source project.
+Notes written for the fork take higher priority over what is written for the upstream:
+If there are contradictions in AGENTS.md about certain things between fork and upstream,
+notes for the fork take a priority over upstream.
+
+## Build and Tooling
+
+- This is a C codebase.
+  The Rider solution and `.vcxproj` are IDE-only models, not the actual build configuration;
+  the project model may not fully represent the build’s compiler settings, include paths, or defines.
+  IDE diagnostics may therefore incorrectly report missing includes, macros, types, or declarations.
+  Do not treat those diagnostics alone as proof of a code issue:
+  the authoritative check for compilation errors and warnings is the repository build.
+- For incremental builds, run `ninja windows` from the repository root;
+  use `./RebuildWindows.ps1` when a clean full rebuild is needed.
+- Build only for Windows OS. Do not try to build to other platforms (with `ninja linux` for example)
+  unless explicitly asked to do so: even in cases where you are working on files related to that specific platform.
+- Keep changes focused. Avoid unrelated formatting or code-structure churn.
+
+## Testing and Validation
+
+- Do not launch or interact with the game to test or debug changes.
+  The developer will perform runtime testing.
+- Validate changes by building and confirming that compilation and linking are complete without warnings or errors.
+- You may build to validate changes
+  but must not assume that debug symbols or other debugging support are available.
+- If a change needs runtime verification, pause and ask me to perform it instead.
+  Give me a concise description of what to open and what to check, with a couple of clear response options
+  (for example, “works as expected” and “does not work” and "Other" field where I can type about what happened).
+  Wait for my response before proceeding based on that check.
+
+## Commits and pull requests
+
+- In notes for the upstream, there is a rules section about commits.
+  You must ignore them: only I can commit to the repo. You never commit in any circumstances.
+
+# Notes for agents (upstream)
 
 This repository ports the Halo: Combat Evolved decompilation (Xbox build
 01.01.14.2342, `cachebeta.exe`) to Linux, Windows and Android. The game's C
